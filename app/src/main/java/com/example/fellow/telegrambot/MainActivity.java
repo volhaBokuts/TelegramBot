@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listViewGetUpdates);
 
-        /*final AsyncTask<String, Void, String> asyncTask = new AsyncTask<String, Void, String>() {
+        final AsyncTask<String, Void, String> asyncTask = new AsyncTask<String, Void, String>() {
             @Override
             protected String doInBackground(String... params) {
                 try {
@@ -49,20 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        asyncTask.execute();*/
-
-        try {
-            TelegramClient telegramClient = new TelegramClient();
-            json = telegramClient.getJson(GET_UPDATES_URL);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Gson gson = new Gson();
-        GetUpdates getUpdates = gson.fromJson(json, GetUpdates.class);
-        List<Result> resultList = getUpdates.getResult();
-        GetUpdatesAdapter getUpdatesAdapter = new GetUpdatesAdapter(resultList, this);
-        listView.setAdapter(getUpdatesAdapter);
+        asyncTask.execute();
 
     }
 }
