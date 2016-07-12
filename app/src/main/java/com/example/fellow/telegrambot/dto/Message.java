@@ -1,11 +1,13 @@
 package com.example.fellow.telegrambot.dto;
 
+import java.util.Date;
+
 public class Message {
 
     private String message_id;
     private From from;
     private Chat chat;
-    private String date;
+    private Date date;
     private String text;
 
     public String getMessage_id() {
@@ -20,7 +22,7 @@ public class Message {
         return chat;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 

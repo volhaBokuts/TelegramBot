@@ -4,10 +4,10 @@ import java.util.List;
 
 public class GetUpdates {
 
-    private String ok;
+    private boolean ok;
     private List<Result> result;
 
-    public String getOk() {
+    public boolean getOk() {
         return ok;
     }
 
