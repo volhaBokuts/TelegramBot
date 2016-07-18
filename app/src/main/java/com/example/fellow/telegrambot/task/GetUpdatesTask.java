@@ -1,5 +1,6 @@
 package com.example.fellow.telegrambot.task;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ListView;
@@ -16,15 +17,20 @@ import java.util.List;
 
 public class GetUpdatesTask extends AsyncTask<Void, Void, List<Result>> {
 
+    private Activity activity;
     final private String GET_UPDATES_URL =
             "https://api.telegram.org/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/getUpdates";
     private String json = "";
     private List<Result> resultList;
 
+    public GetUpdatesTask(Activity activity) {
+        this.activity = activity;
+    }
+
     @Override
     protected List<Result> doInBackground(Void... params) {
+        TelegramClient telegramClient = new TelegramClient();
         try {
-            TelegramClient telegramClient = new TelegramClient();
             json = telegramClient.getJson(GET_UPDATES_URL);
             Gson gson = new Gson();
             GetUpdates getUpdates = gson.fromJson(json, GetUpdates.class);

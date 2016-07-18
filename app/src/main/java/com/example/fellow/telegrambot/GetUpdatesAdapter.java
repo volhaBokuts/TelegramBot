@@ -40,6 +40,7 @@ public class GetUpdatesAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Result result = resultList.get(position);
         View resultView;
+
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         resultView = layoutInflater.inflate(R.layout.list_view_getupdate, parent, false);
