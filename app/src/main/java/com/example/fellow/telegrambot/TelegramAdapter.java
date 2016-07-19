@@ -11,12 +11,12 @@ import com.example.fellow.telegrambot.dto.Result;
 
 import java.util.List;
 
-public class GetUpdatesAdapter extends BaseAdapter {
+public class TelegramAdapter extends BaseAdapter {
 
     private List<Result> resultList;
     private Context context;
 
-    public GetUpdatesAdapter(List<Result> resultList, Context context) {
+    public TelegramAdapter(List<Result> resultList, Context context) {
         this.resultList = resultList;
         this.context = context;
     }
@@ -49,6 +49,10 @@ public class GetUpdatesAdapter extends BaseAdapter {
         ((TextView)resultView.findViewById(R.id.textViewDate)).setText(result.getMessage().getDate().toString());
 
         return resultView;
+    }
+
+    public List<Result> getResultList() {
+        return resultList;
     }
 
 }
