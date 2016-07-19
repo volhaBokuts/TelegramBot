@@ -7,7 +7,7 @@ public class Message {
     private String message_id;
     private From from;
     private Chat chat;
-    private Date date;
+    private String date;
     private String text;
 
     public String getMessage_id() {
@@ -22,7 +22,7 @@ public class Message {
         return chat;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
