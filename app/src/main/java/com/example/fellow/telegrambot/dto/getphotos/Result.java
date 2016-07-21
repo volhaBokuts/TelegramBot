@@ -5,6 +5,6 @@ import java.util.List;
 public class Result {
 
     private String total_count;
-    private List<List<String>> photos;
+    private List<List<Photos>> photos;
 
 }
