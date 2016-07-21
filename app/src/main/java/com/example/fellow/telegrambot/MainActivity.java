@@ -10,7 +10,7 @@ import com.example.fellow.telegrambot.task.GetUpdatesAsyncTask;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     ListView listView;
 
@@ -21,13 +21,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         listView = (ListView) findViewById(R.id.listViewGetUpdates);
 
+        //new GetUpdatesAsyncTask(this).execute();
+
         TelegramAdapter telegramAdapter = new TelegramAdapter(new ArrayList<Result>(), this);
         listView.setAdapter(telegramAdapter);
 
     }
 
     @Override
-    public void onClick(View v) {
+    protected void onResume() {
+        super.onResume();
         new GetUpdatesAsyncTask(this).execute();
     }
 }

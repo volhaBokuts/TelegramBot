@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TelegramBot</string>
+    <string name="btn_send_message">Send message</string>
 </resources>

@@ -7,12 +7,11 @@ public class GetUpdates {
     private boolean ok;
     private List<Result> result;
 
-    public boolean getOk() {
+    public boolean isOk() {
         return ok;
     }
 
     public List<Result> getResult() {
         return result;
     }
-
 }

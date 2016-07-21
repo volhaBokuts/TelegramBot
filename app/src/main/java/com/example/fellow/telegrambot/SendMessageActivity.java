@@ -30,8 +30,7 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
         String chatId = getIntent().getStringExtra(TelegramAdapter.KEY);
         String message = sendMessage.getText().toString();
 
-        SendMessageAsyncTask sendMessageAsyncTask = new SendMessageAsyncTask(chatId, message, this);
-        sendMessageAsyncTask.execute();
+        new SendMessageAsyncTask(chatId, message, this).execute();
 
     }
 }

@@ -12,10 +12,19 @@ import okhttp3.Response;
 
 public class TelegramClient {
 
+    public final static String API_KEY = "207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc";
     public final static String GETUPDATES_URL =
-            "https://api.telegram.org/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/getUpdates";
+            "https://api.telegram.org/bot" + API_KEY + "/getUpdates";
     public final static String SENDMESSAGE_URL =
-            "https://api.telegram.org/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/sendMessage";
+            "https://api.telegram.org/bot" + API_KEY + "/sendMessage";
+    public final static String GET_USER_PROFILE_PHOTOS = "https://api.telegram.org/bot" + API_KEY + "/getUserProfilePhotos";
+    public final static String GET_FILE = "https://api.telegram.org/bot" + API_KEY + "/getFile";
+    public final static String PHOTO = "https://api.telegram.org/bot" + API_KEY + "/";
+
+    //https://api.telegram.org/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/getUserProfilePhotos?user_id=208013459
+    //https://api.telegram.org/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/getFile?file_id=AgADAgADqacxG5MIZgyOcE0mLx4hk38vcQ0ABB_1mNOUCpuQr04AAgI
+    //https://api.telegram.org/file/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/photo/file_0.jpg
+
 
     private String get (String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
