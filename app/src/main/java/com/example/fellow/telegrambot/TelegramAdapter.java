@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fellow.telegrambot.dto.Result;
@@ -46,6 +47,7 @@ public class TelegramAdapter extends BaseAdapter {
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         resultView = layoutInflater.inflate(R.layout.list_view_getupdate, parent, false);
+        //((TextView)resultView.findViewById(R.id.textViewImage)).
         ((TextView)resultView.findViewById(R.id.textViewText)).setText(result.getMessage().getText());
         ((TextView)resultView.findViewById(R.id.textViewName)).setText(result.getMessage().getFrom().getFirst_name());
         ((TextView)resultView.findViewById(R.id.textViewDate)).setText(result.getMessage().getDate());

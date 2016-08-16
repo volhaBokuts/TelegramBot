@@ -7,6 +7,7 @@ import android.widget.ListView;
 
 import com.example.fellow.telegrambot.dto.Result;
 import com.example.fellow.telegrambot.task.GetUpdatesAsyncTask;
+import com.example.fellow.telegrambot.task.GetUserProfilePhotosAsyncTask;
 
 import java.util.ArrayList;
 
@@ -20,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = (ListView) findViewById(R.id.listViewGetUpdates);
-
-        //new GetUpdatesAsyncTask(this).execute();
 
         TelegramAdapter telegramAdapter = new TelegramAdapter(new ArrayList<Result>(), this);
         listView.setAdapter(telegramAdapter);

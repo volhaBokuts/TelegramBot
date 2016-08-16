@@ -1,6 +1,6 @@
 package com.example.fellow.telegrambot.dto.getphotos;
 
-public class getUserProfilePhotos {
+public class GetUserProfilePhotos {
 
     private boolean ok;
     private Result result;

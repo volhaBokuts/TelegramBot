@@ -4,7 +4,8 @@ public class Photos {
 
     private String file_id;
     private String file_size;
-    private String file_path;
+    private String width;
+    private String height;
 
     public String getFile_id() {
         return file_id;
@@ -14,7 +15,11 @@ public class Photos {
         return file_size;
     }
 
-    public String getFile_path() {
-        return file_path;
+    public String getWidth() {
+        return width;
+    }
+
+    public String getHeight() {
+        return height;
     }
 }

@@ -2,6 +2,8 @@ package com.example.fellow.telegrambot;
 
 import com.example.fellow.telegrambot.dto.GetUpdates;
 import com.example.fellow.telegrambot.dto.SendMessage;
+import com.example.fellow.telegrambot.dto.getfile.GetFile;
+import com.example.fellow.telegrambot.dto.getphotos.GetUserProfilePhotos;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -17,14 +19,11 @@ public class TelegramClient {
             "https://api.telegram.org/bot" + API_KEY + "/getUpdates";
     public final static String SENDMESSAGE_URL =
             "https://api.telegram.org/bot" + API_KEY + "/sendMessage";
-    public final static String GET_USER_PROFILE_PHOTOS = "https://api.telegram.org/bot" + API_KEY + "/getUserProfilePhotos";
-    public final static String GET_FILE = "https://api.telegram.org/bot" + API_KEY + "/getFile";
-    public final static String PHOTO = "https://api.telegram.org/bot" + API_KEY + "/";
+    public final static String GET_USER_PROFILE_PHOTOS_URL = "https://api.telegram.org/bot" + API_KEY + "/getUserProfilePhotos";
+    public final static String GETFILE_URL = "https://api.telegram.org/bot" + API_KEY + "/getFile";
+    public final static String GETPHOTO_URL = "https://api.telegram.org/bot" + API_KEY + "/";
 
-    //https://api.telegram.org/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/getUserProfilePhotos?user_id=208013459
-    //https://api.telegram.org/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/getFile?file_id=AgADAgADqacxG5MIZgyOcE0mLx4hk38vcQ0ABB_1mNOUCpuQr04AAgI
     //https://api.telegram.org/file/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/photo/file_0.jpg
-
 
     private String get (String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -50,5 +49,20 @@ public class TelegramClient {
         SendMessage sendMessage = gson.fromJson(json, SendMessage.class);
         return sendMessage;
     }
+
+    public GetUserProfilePhotos getUserProfilePhotos(String userId) throws IOException {
+        Gson gson = new Gson();
+        String json = get(GET_USER_PROFILE_PHOTOS_URL + "?user_id=" + userId);
+        GetUserProfilePhotos getUserProfilePhotos = gson.fromJson(json, GetUserProfilePhotos.class);
+        return getUserProfilePhotos;
+    }
+
+    public GetFile getFile(String fileId) throws IOException {
+        Gson gson = new Gson();
+        String json = get(GETFILE_URL + "?file_id=" + fileId);
+        GetFile getFile = gson.fromJson(json, GetFile.class);
+        return getFile;
+    }
+
 
 }
