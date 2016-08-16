@@ -9,8 +9,12 @@ import com.example.fellow.telegrambot.TelegramAdapter;
 import com.example.fellow.telegrambot.R;
 import com.example.fellow.telegrambot.TelegramClient;
 import com.example.fellow.telegrambot.dto.GetUpdates;
+import com.example.fellow.telegrambot.dto.Message;
+import com.example.fellow.telegrambot.dto.MessageInfo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GetUpdatesAsyncTask extends AsyncTask<Void, Void, GetUpdates> {
 
@@ -24,6 +28,7 @@ public class GetUpdatesAsyncTask extends AsyncTask<Void, Void, GetUpdates> {
     protected GetUpdates doInBackground(Void... params) {
         TelegramClient telegramClient = new TelegramClient();
         GetUpdates getUpdates;
+        List<MessageInfo> messageInfoList = new ArrayList<MessageInfo>();
         try {
             getUpdates = telegramClient.getUpdates();
             for(int i = 0; i < getUpdates.getResult().size(); i++) {

@@ -47,7 +47,7 @@ public class TelegramAdapter extends BaseAdapter {
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         resultView = layoutInflater.inflate(R.layout.list_view_getupdate, parent, false);
-        //((TextView)resultView.findViewById(R.id.textViewImage)).
+        //((ImageView)resultView.findViewById(R.id.imageViewImage)).
         ((TextView)resultView.findViewById(R.id.textViewText)).setText(result.getMessage().getText());
         ((TextView)resultView.findViewById(R.id.textViewName)).setText(result.getMessage().getFrom().getFirst_name());
         ((TextView)resultView.findViewById(R.id.textViewDate)).setText(result.getMessage().getDate());
