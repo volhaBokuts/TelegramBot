@@ -21,7 +21,7 @@ public class TelegramClient {
             "https://api.telegram.org/bot" + API_KEY + "/sendMessage";
     public final static String GET_USER_PROFILE_PHOTOS_URL = "https://api.telegram.org/bot" + API_KEY + "/getUserProfilePhotos";
     public final static String GETFILE_URL = "https://api.telegram.org/bot" + API_KEY + "/getFile";
-    public final static String GETPHOTO_URL = "https://api.telegram.org/bot" + API_KEY + "/";
+    public final static String GETPHOTO_URL = "https://api.telegram.org/file/bot" + API_KEY + "/";
 
     //https://api.telegram.org/file/bot207051102:AAHN1chK2w6KGwc-WyocuxaE7Lkl4H40CQc/photo/file_0.jpg
 
@@ -64,5 +64,14 @@ public class TelegramClient {
         return getFile;
     }
 
+    public String getPhoto(String filePath) throws IOException {
+        return GETPHOTO_URL + filePath;
+    }
+
+    public String getPhotoPath(String userId) throws IOException {
+        getUserProfilePhotos(userId);
+        getFile(getUserProfilePhotos(userId).getResult().getPhotos().get(0).get(0).getFile_id());
+        return getPhoto(getFile(getUserProfilePhotos(userId).getResult().getPhotos().get(0).get(0).getFile_id()).getResult().getFile_path());
+    }
 
 }

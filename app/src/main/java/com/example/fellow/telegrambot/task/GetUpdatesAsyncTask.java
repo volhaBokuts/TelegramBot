@@ -23,7 +23,12 @@ public class GetUpdatesAsyncTask extends AsyncTask<Void, Void, GetUpdates> {
     @Override
     protected GetUpdates doInBackground(Void... params) {
         TelegramClient telegramClient = new TelegramClient();
+        GetUpdates getUpdates;
         try {
+            getUpdates = telegramClient.getUpdates();
+            for(int i = 0; i < getUpdates.getResult().size(); i++) {
+                telegramClient.getPhotoPath(getUpdates.getResult().get(i).getMessage().getFrom().getId());
+            }
             return telegramClient.getUpdates();
         } catch (IOException e) {
             e.printStackTrace();
