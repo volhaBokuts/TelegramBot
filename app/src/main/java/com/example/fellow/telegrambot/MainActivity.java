@@ -2,12 +2,10 @@ package com.example.fellow.telegrambot;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 
-import com.example.fellow.telegrambot.dto.Result;
+import com.example.fellow.telegrambot.dto.MessageInfo;
 import com.example.fellow.telegrambot.task.GetUpdatesAsyncTask;
-import com.example.fellow.telegrambot.task.GetUserProfilePhotosAsyncTask;
 
 import java.util.ArrayList;
 
@@ -22,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listViewGetUpdates);
 
-        TelegramAdapter telegramAdapter = new TelegramAdapter(new ArrayList<Result>(), this);
+        TelegramAdapter telegramAdapter = new TelegramAdapter(new ArrayList<MessageInfo>(), this);
         listView.setAdapter(telegramAdapter);
 
     }

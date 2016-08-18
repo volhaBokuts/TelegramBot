@@ -69,9 +69,10 @@ public class TelegramClient {
     }
 
     public String getPhotoPath(String userId) throws IOException {
-        //getUserProfilePhotos(userId);
-        //getFile(getUserProfilePhotos(userId).getResult().getPhotos().get(0).get(0).getFile_id());
-        return getPhoto(getFile(getUserProfilePhotos(userId).getResult().getPhotos().get(0).get(0).getFile_id()).getResult().getFile_path());
+        GetUserProfilePhotos getUserProfilePhotos = getUserProfilePhotos(userId);
+        GetFile getFile = getFile(getUserProfilePhotos.getResult().getPhotos().get(0).get(0).getFile_id());
+        String photoPath = getPhoto(getFile.getResult().getFile_path());
+        return photoPath;
     }
 
 }

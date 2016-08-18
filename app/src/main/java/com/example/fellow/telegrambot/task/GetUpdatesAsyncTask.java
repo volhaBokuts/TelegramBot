@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetUpdatesAsyncTask extends AsyncTask<Void, Void, GetUpdates> {
+public class GetUpdatesAsyncTask extends AsyncTask<Void, Void, List<MessageInfo>> {
 
     private Activity activity;
 
@@ -25,16 +25,26 @@ public class GetUpdatesAsyncTask extends AsyncTask<Void, Void, GetUpdates> {
     }
 
     @Override
-    protected GetUpdates doInBackground(Void... params) {
+    protected List<MessageInfo> doInBackground(Void... params) {
         TelegramClient telegramClient = new TelegramClient();
         GetUpdates getUpdates;
-        List<MessageInfo> messageInfoList = new ArrayList<MessageInfo>();
+        String photoPath;
+        List<MessageInfo> messageInfoList = new ArrayList<>();
         try {
             getUpdates = telegramClient.getUpdates();
             for(int i = 0; i < getUpdates.getResult().size(); i++) {
-                telegramClient.getPhotoPath(getUpdates.getResult().get(i).getMessage().getFrom().getId());
+                photoPath = telegramClient.getPhotoPath(getUpdates.getResult().get(i).getMessage().getFrom().getId());
+                MessageInfo messageInfo = new MessageInfo();
+                messageInfo.setChatId(getUpdates.getResult().get(i).getMessage().getChat().getId());
+                messageInfo.setUserId(getUpdates.getResult().get(i).getMessage().getFrom().getId());
+                messageInfo.setText(getUpdates.getResult().get(i).getMessage().getText());
+                messageInfo.setFirstName(getUpdates.getResult().get(i).getMessage().getFrom().getFirst_name());
+                messageInfo.setDate(getUpdates.getResult().get(i).getMessage().getDate());
+                messageInfo.setPhotoPath(photoPath);
+                messageInfoList.add(messageInfo);
             }
-            return telegramClient.getUpdates();
+            //return telegramClient.getUpdates();
+            return messageInfoList;
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,12 +52,12 @@ public class GetUpdatesAsyncTask extends AsyncTask<Void, Void, GetUpdates> {
     }
 
     @Override
-    protected void onPostExecute(GetUpdates getUpdates) {
-        super.onPostExecute(getUpdates);
-        if(getUpdates != null) {
+    protected void onPostExecute(List<MessageInfo> messageInfoList) {
+        super.onPostExecute(messageInfoList);
+        if(messageInfoList != null) {
             ListView listView = (ListView) activity.findViewById(R.id.listViewGetUpdates);
-            ((TelegramAdapter) listView.getAdapter()).getResultList().clear();
-            ((TelegramAdapter) listView.getAdapter()).getResultList().addAll(getUpdates.getResult());
+            ((TelegramAdapter) listView.getAdapter()).getMessageInfoList().clear();
+            ((TelegramAdapter) listView.getAdapter()).getMessageInfoList().addAll(messageInfoList);
             ((TelegramAdapter) listView.getAdapter()).notifyDataSetChanged();
         } else {
             Toast.makeText(activity, "Нет сообщений", Toast.LENGTH_LONG).show();

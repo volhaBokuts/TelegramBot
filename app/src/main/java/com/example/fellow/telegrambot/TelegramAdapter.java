@@ -9,29 +9,31 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.fellow.telegrambot.dto.Message;
+import com.example.fellow.telegrambot.dto.MessageInfo;
 import com.example.fellow.telegrambot.dto.Result;
 
 import java.util.List;
 
 public class TelegramAdapter extends BaseAdapter {
 
-    private List<Result> resultList;
+    private List<MessageInfo> messageInfoList;
     private Context context;
     static String KEY = "chatId";
 
-    public TelegramAdapter(List<Result> resultList, Context context) {
-        this.resultList = resultList;
+    public TelegramAdapter(List<MessageInfo> messageInfoList, Context context) {
+        this.messageInfoList = messageInfoList;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return resultList.size();
+        return messageInfoList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return resultList.get(position);
+        return messageInfoList.get(position);
     }
 
     @Override
@@ -41,31 +43,31 @@ public class TelegramAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final Result result = resultList.get(position);
-        View resultView;
+        final MessageInfo messageInfo = messageInfoList.get(position);
+        View messageInfoView;
 
         LayoutInflater layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        resultView = layoutInflater.inflate(R.layout.list_view_getupdate, parent, false);
-        //((ImageView)resultView.findViewById(R.id.imageViewImage)).
-        ((TextView)resultView.findViewById(R.id.textViewText)).setText(result.getMessage().getText());
-        ((TextView)resultView.findViewById(R.id.textViewName)).setText(result.getMessage().getFrom().getFirst_name());
-        ((TextView)resultView.findViewById(R.id.textViewDate)).setText(result.getMessage().getDate());
+        messageInfoView = layoutInflater.inflate(R.layout.list_view_getupdate, parent, false);
+        //((ImageView)messageInfoView.findViewById(R.id.imageViewAvatar)).
+        ((TextView)messageInfoView.findViewById(R.id.textViewText)).setText(messageInfo.getText());
+        ((TextView)messageInfoView.findViewById(R.id.textViewName)).setText(messageInfo.getFirstName());
+        ((TextView)messageInfoView.findViewById(R.id.textViewDate)).setText(messageInfo.getDate());
 
-        resultView.setOnClickListener(new View.OnClickListener() {
+        messageInfoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SendMessageActivity.class);
-                intent.putExtra(KEY, result.getMessage().getChat().getId());
+                intent.putExtra(KEY, messageInfo.getChatId());
                 context.startActivity(intent);
             }
         });
 
-        return resultView;
+        return messageInfoView;
     }
 
-    public List<Result> getResultList() {
-        return resultList;
+    public List<MessageInfo> getMessageInfoList() {
+        return messageInfoList;
     }
 
 }
